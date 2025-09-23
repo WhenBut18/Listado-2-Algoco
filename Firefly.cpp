@@ -3,12 +3,12 @@
 using namespace std;
 
 int main(){
-    int largo, altura, aux, min = 0, cantmin = 0;
+    long long largo, altura, aux, min = 0, cantmin = 0;
     bool trigger = false;
     cin >> largo >> altura;
 
-    map<int,int> colisiones;
-    for (int i = 1; i <= altura+1; i++){
+    map<long long,long long> colisiones;
+    for (long long i = 1; i <= altura+1; i++){
         colisiones[i] = 0;
     }
 
@@ -24,8 +24,8 @@ int main(){
         trigger = !trigger;
     }
 
-    int acumulado = 0;
-    for (int i = 1; i <= altura; i++){
+    long long acumulado = 0;
+    for (long long i = 1; i <= altura; i++){
         acumulado += colisiones[i];
         if (min == 0){
             min = acumulado;
