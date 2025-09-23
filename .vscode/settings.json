@@ -9,6 +9,7 @@
         "vector": "cpp",
         "flat_map": "cpp",
         "flat_set": "cpp",
-        "ostream": "cpp"
+        "ostream": "cpp",
+        "iosfwd": "cpp"
     }
 }

@@ -2,26 +2,29 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int main()
-{
-    int casos, aux, max;
-    cin >> casos;
-    vector<int> numA;
-    vector<int> numB;
-    while(casos--){
-        max = 0;
-        cin >> aux;
-        numA.push_back(aux);
-        cin >> aux;
-        numB.push_back(aux);
-        sort(numA.begin(),numA.end());
-        sort(numB.begin(),numB.end(), greater<int>());
-        for (int i = 0; i < numA.size(); i++){
-            if (max < (numA[i] + numB[i])){
-                max = numA[i] + numB[i];
-            }
+int main(){
+    int N;
+    cin >> N;
+    vector<int> numA, numB;
+
+    for (int round = 0; round < N; round++) {
+        int a, b;
+        cin >> a >> b;
+        numA.push_back(a);
+        numB.push_back(b);
+
+        vector<int> A = numA;
+        vector<int> B = numB;
+
+        sort(A.begin(), A.end());                
+        sort(B.begin(), B.end(), greater<int>()); 
+
+        int mx = 0;
+        for (int i = 0; i < (int)A.size(); i++) {
+            mx = max(mx, A[i] + B[i]);
         }
-        cout << max << endl;
+        cout << mx << "\n";
     }
+
     return 0;
 }
