@@ -3,43 +3,36 @@
 using namespace std;
 
 int main(){
-    long long largo, altura, aux, min = 0, cantmin = 0;
-    bool trigger = false;
-    cin >> largo >> altura;
+    int cantidad, altura;
+    cin >> cantidad >> altura;
 
-    map<long long,long long> colisiones;
-    for (long long i = 1; i <= altura+1; i++){
-        colisiones[i] = 0;
-    }
+    vector<long long> diferencia(altura + 2, 0);
+    bool trigger = true;
 
-    while (largo--){
+    for (int i = 0; i < cantidad; i++) {
+        int aux;
         cin >> aux;
-        if (!trigger){
-            colisiones[1] += 1;
-            colisiones[aux+1] -= 1;
+        if (trigger) {
+            diferencia[1] += 1;
+            if (aux + 1 <= altura) diferencia[aux + 1] -= 1;
         } else {
-            colisiones[altura-aux+1] += 1;
-            colisiones[altura+1] -= 1;
+            diferencia[altura - aux + 1] += 1;
+            diferencia[altura + 1] -= 1;
         }
         trigger = !trigger;
     }
 
-    long long acumulado = 0;
-    for (long long i = 1; i <= altura; i++){
-        acumulado += colisiones[i];
-        if (min == 0){
-            min = acumulado;
-            cantmin = 1;
-        } else {
-            if (min > acumulado){
-                min = acumulado;
-                cantmin = 1;
-            } else if (min == acumulado){
-                cantmin += 1;
-            }
+    long long minObs = LLONG_MAX, count = 0, acum = 0;
+    for (int i = 1; i <= altura; i++) {
+        acum += diferencia[i];
+        if (acum < minObs) {
+            minObs = acum;
+            count = 1;
+        } else if (acum == minObs) {
+            count++;
         }
     }
 
-    cout << min << " " << cantmin;
+    cout << minObs << " " << count << "\n";
     return 0;
 }
